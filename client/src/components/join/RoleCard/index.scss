@@ -1,0 +1,26 @@
+.role_card {
+  width: 80px;
+  height: 110px;
+  padding: 15px;
+  background: #777070;
+  border: 1px solid #FFFFFF;
+  border-radius: 9px;
+  cursor: pointer;
+
+  img {
+    height: 100%;
+    filter: grayscale(100);
+  }
+}
+
+.role_card.active {
+  border: 2px solid #FCAA72;
+
+  img {
+    filter: grayscale(0);
+  }
+}
+
+.role_card + .role_card {
+  margin-top: 20px;
+}
