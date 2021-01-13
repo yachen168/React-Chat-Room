@@ -1,0 +1,14 @@
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 10px 70px;
+  background-color: #524A4A;
+  z-index: 10;
+
+  .title {
+    margin: 0;
+    color: #c5bcbc;
+    font-size: 24px;
+  }
+}
