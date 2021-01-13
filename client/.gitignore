@@ -1,0 +1,5 @@
+/node_modules
+.eslintcache
+.eslintric.js
+.prettierrc
+.DS_Store
