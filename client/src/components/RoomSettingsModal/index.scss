@@ -1,0 +1,41 @@
+.room_settings_bg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(black,0.6);
+  z-index: 20;
+}
+
+.room_settings {
+  width: 400px;
+  height: 200px;
+  padding: 30px 0;
+  text-align: center;
+  background-color: #eee;
+  box-shadow: 0 0 15px rgb(75, 75, 75);
+  border-radius: 5px;
+
+  input {
+    padding: 5px;
+    margin-right: 10px;
+    border-radius: 5px;
+    border: 1px solid rgb(221, 221, 221);
+  }
+
+  button {
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #fff;
+    border: 1px solid rgb(221, 221, 221);
+  }
+
+  button +  button {
+    margin-left: 5px;
+  }
+}
