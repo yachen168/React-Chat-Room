@@ -1,0 +1,83 @@
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  padding: 80px 20px;
+  background:#444343;
+
+  .username {
+    display: inline-block;
+    margin-left: 10px;
+    vertical-align: middle;
+    color: #fff;
+  }
+
+  .avatar {
+    width: 60px;
+    vertical-align: middle;
+  }
+
+  .this_room_info {
+    padding: 5px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    border-radius: 5px;
+
+    h2 {
+      padding: 3px;
+      text-align: center;
+      color: #eee;
+      background-color: rgba(rgb(175, 172, 172),0.4);
+      font-size: 17px;
+      border-radius: 5px;
+    }
+
+    li {
+      position: relative;
+      padding: 5px 10px;
+      color: #fff;
+      cursor: pointer;
+      border-radius: 5px;
+      transition-duration: 0.3s;
+
+      &::after {
+        content: "";
+        width: 9px;
+        height: 9px;
+        position: absolute;
+        right: 15px;
+        top: 0;
+        bottom: 0;
+        margin:  auto 0;
+        background-color: rgb(3, 148, 3);
+        border-radius: 50%;
+      }
+
+      &:hover {
+        background-color:rgba(109, 108, 108, 0.3);
+      }
+    }
+
+    li + li {
+      margin-top: 10px;
+   }
+
+    img {
+      width: 30px;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+  }
+
+  .exit_button{
+    display: block;
+    width: fit-content;
+    margin: 0 auto;
+    padding: 5px;
+    font-size: 17px;
+    font-weight: 500;
+    color: #333;
+    background-color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+}
