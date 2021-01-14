@@ -13,6 +13,7 @@
   border-radius: 8px;
 
   .icons {
+    position: relative;
     > div {
       display: inline-block;
       margin-right: 25px;
@@ -24,13 +25,18 @@
     }
   }
 
+  .emoji-picker-react {
+    position: absolute;
+    bottom: 65px;
+    box-shadow: none;
+  }
+
   .upload_img {
     position: relative;
     input {
       position: absolute;
       width: 30px;
       opacity: 0;
-      pointer-events: none;
     }
   }
 
