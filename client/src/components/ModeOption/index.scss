@@ -1,0 +1,20 @@
+.mode_option {
+  display: inline-block;
+  width: 120px;
+  height: 120px;
+  line-height: 120px;
+  text-align: center;
+  font-size: 22px;
+  color: #fff;
+  background: #524A4A;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.mode_option + .mode_option {
+  margin-left: 30px;
+}
+
+.mode_option.active {
+  background: #E8A87E;
+}
