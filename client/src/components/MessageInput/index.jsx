@@ -9,12 +9,12 @@ import './index.scss';
 
 const MessageInput = ({ setMessage, sendMessage, message, uploadImage }) => {
   const [isShowEmojiPicker, setIsShowEmojiPicker] = useState(false);
-  const [chosenEmoji, setChosenEmoji] = useState(null);
 
   const onEmojiClick = (event, emojiObject) => {
-    console.log(emojiObject);
+    const input = document.querySelector('.message_input');
     setIsShowEmojiPicker(false);
     setMessage(`${message}${emojiObject.emoji}`);
+    input.focus();
   };
 
   return (
