@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import './index.scss';
 
-const Sidebar = ({ userInfo, userList, exitRoom }) => {
+const Sidebar = ({ userInfo, room, userList, exitRoom }) => {
   return (
     <div className="sidebar">
       <div className="user_info">
@@ -12,7 +12,9 @@ const Sidebar = ({ userInfo, userList, exitRoom }) => {
         <h2 className="username">{userInfo.username}</h2>
       </div>
       <div className="this_room_info">
-        <h2>該聊天室 ({userList.length} 人)</h2>
+        <h2>
+          {room}聊天室 ({userList.length} 人)
+        </h2>
         <ul>
           {userList.map((user) => {
             return (
