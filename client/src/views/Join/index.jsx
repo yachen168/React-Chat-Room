@@ -21,8 +21,8 @@ import blackCatAvatar from '../../images/small/cat-4.png';
 
 import './index.scss';
 
-import SwitchButton from '../join/SwitchButton';
-import RoleCard from '../join/RoleCard';
+import SwitchButton from '../../components/join/SwitchButton';
+import RoleCard from '../../components/join/RoleCard';
 
 const roles = {
   cats: [brownCatImage, blackWhiteCatImage, orangeCatImage, blackCatImage],
@@ -43,7 +43,7 @@ const setLocalStorage = (userInfo) => {
   localStorage.setItem('userInfo', JSON.stringify(userInfo));
 };
 
-const SettingCard = () => {
+const Join = () => {
   const [roleType, setRoleType] = useState('dogs');
   const [roleIndex, setRoleIndex] = useState(0);
   const [username, setUsername] = useState('');
@@ -66,47 +66,49 @@ const SettingCard = () => {
   };
 
   return (
-    <form className="setting_card" onSubmit={(e) => e.preventDefault()}>
-      <div className="buttons">
-        <SwitchButton
-          buttonText="狗狗"
-          isActive={roleType === 'dogs'}
-          onClick={() => setRoleType('dogs')}
-        />
-        <SwitchButton
-          buttonText="貓貓"
-          isActive={roleType === 'cats'}
-          onClick={() => setRoleType('cats')}
-        />
-      </div>
-      <div className="setting_card_main">
-        <h2 className="welcome">WELCOME</h2>
-        <h1 className="brand">阿貓阿狗聊天室</h1>
-        <img className="role" src={roles[roleType][roleIndex]} alt="role" />
-        <input
-          className="input_username"
-          type="text"
-          placeholder="輸入暱稱"
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <Link onClick={submitHandler} to={`/mode`} className="button_enter">
-          進入聊天
-        </Link>
-      </div>
-      <div>
-        {roles[roleType].map((item, i) => {
-          return (
-            <RoleCard
-              key={i}
-              image={item}
-              isActive={item === roles[roleType][roleIndex]}
-              onClick={chooseRole(i)}
-            />
-          );
-        })}
-      </div>
-    </form>
+    <main className="main_join">
+      <form className="setting_card" onSubmit={(e) => e.preventDefault()}>
+        <div className="buttons">
+          <SwitchButton
+            buttonText="狗狗"
+            isActive={roleType === 'dogs'}
+            onClick={() => setRoleType('dogs')}
+          />
+          <SwitchButton
+            buttonText="貓貓"
+            isActive={roleType === 'cats'}
+            onClick={() => setRoleType('cats')}
+          />
+        </div>
+        <div className="setting_card_main">
+          <h2 className="welcome">WELCOME</h2>
+          <h1 className="brand">阿貓阿狗聊天室</h1>
+          <img className="role" src={roles[roleType][roleIndex]} alt="role" />
+          <input
+            className="input_username"
+            type="text"
+            placeholder="輸入暱稱"
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <Link onClick={submitHandler} to={`/mode`} className="button_enter">
+            進入聊天
+          </Link>
+        </div>
+        <div>
+          {roles[roleType].map((item, i) => {
+            return (
+              <RoleCard
+                key={i}
+                image={item}
+                isActive={item === roles[roleType][roleIndex]}
+                onClick={chooseRole(i)}
+              />
+            );
+          })}
+        </div>
+      </form>
+    </main>
   );
 };
 
-export default SettingCard;
+export default Join;
