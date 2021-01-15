@@ -15,8 +15,14 @@ const Message = ({ userInfo, messageInfo }) => {
         <img className="avatar" src={messageInfo.avatar} alt="" />
         <h4 className="username">{messageInfo.username}</h4>
       </div>
-      <div className="sentence">{messageInfo.message}</div>
-      <span className="time">20:16</span>
+      <div className="sentence">
+        {messageInfo.message.type === 'text' ? (
+          messageInfo.message.content
+        ) : (
+          <img src={messageInfo.message.content} alt="image" />
+        )}
+      </div>
+      <span className="time">{messageInfo.message.time}</span>
     </div>
   );
 };
