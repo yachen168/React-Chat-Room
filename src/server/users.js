@@ -28,7 +28,7 @@ const removeUser = (userInfo, roomInfo) => {
 
 const getExistRooms = () => usersInNormal;
 
-const getUser = (id) => users.find((user) => user.id === id);
+// const getUser = (id) => users.find((user) => user.id === id);
 
 const getUsersInRoom = () => {
   let roomSet = new Set();
@@ -49,4 +49,4 @@ const getUsersInRoom = () => {
   }
 };
 
-module.exports = { addUser, removeUser, getUser, getUsersInRoom, getExistRooms };
+module.exports = { addUser, removeUser, getUsersInRoom, getExistRooms };

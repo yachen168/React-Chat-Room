@@ -2,7 +2,7 @@ const http = require('http');
 const express = require('express');
 const socketIO = require('socket.io');
 
-const { addUser, removeUser, getUser, getUsersInRoom, getExistRooms } = require('./users');
+const { addUser, removeUser, getUsersInRoom, getExistRooms } = require('./users');
 
 const app = express();
 const server = http.createServer(app);
