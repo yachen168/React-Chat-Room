@@ -61,8 +61,8 @@ io.on('connect', (socket) => {
     const { userInfo, roomInfo } = socket;
     const userList = removeUser(userInfo, roomInfo);
 
-    io.to(user.room).emit('receiveUserList', {userList});
-    io.to(user.room).emit('receiveMessage', { userInfo, isSystemMessage: true, message: `${userInfo.username} 離開聊天室`});
+    io.to(roomInfo.room).emit('receiveUserList', {userList});
+    io.to(roomInfo.room).emit('receiveMessage', { userInfo, isSystemMessage: true, message: `${userInfo.username} 離開聊天室`});
 
     socket.removeAllListeners();
   })
