@@ -19,9 +19,6 @@ io.on('connect', (socket) => {
     const userInfoWithSocketId = {...userInfo, id: socket.id};
     const { usersInLobby, usersInNormal } = addUser({ userInfo: userInfoWithSocketId, roomInfo });
     
-    socket.userInfo = userInfoWithSocketId;
-    socket.roomInfo = roomInfo
-
     socket.join(roomInfo.room);
     io.to(roomInfo.room).emit('receiveMessage', {userInfo: userInfoWithSocketId, isSystemMessage: true, message: `${userInfo.username} 加入聊天室`});
     io.to(socket.id).emit('receiveUserInfoWithSocketId', userInfoWithSocketId);
@@ -58,11 +55,12 @@ io.on('connect', (socket) => {
 
   socket.on('disconnect', () => {
     console.log('disconnect')
-    const { userInfo, roomInfo } = socket;
-    const userList = removeUser(userInfo, roomInfo);
 
-    io.to(roomInfo.room).emit('receiveUserList', {userList});
-    io.to(roomInfo.room).emit('receiveMessage', { userInfo, isSystemMessage: true, message: `${userInfo.username} 離開聊天室`});
+    // const { userInfo, roomInfo } = socket;
+    // const userList = removeUser(userInfo, roomInfo);
+
+    // io.to(roomInfo.room).emit('receiveUserList', {userList});
+    // io.to(roomInfo.room).emit('receiveMessage', { userInfo, isSystemMessage: true, message: `${userInfo.username} 離開聊天室`});
 
     socket.removeAllListeners();
   })
