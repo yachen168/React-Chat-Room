@@ -11,7 +11,7 @@ const RoomSettings = ({
   return (
     <div className="room_settings_bg">
       <div className="room_settings">
-        <p>房間設定</p>
+        <h2 className="title">房間設定</h2>
         <input
           type="text"
           placeholder="請輸入房間名稱"

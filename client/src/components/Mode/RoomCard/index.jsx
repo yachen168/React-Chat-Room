@@ -1,6 +1,6 @@
 import React from 'react';
 
-import UsersIcon from '../../images/users.png';
+import UsersIcon from '../../../images/users.png';
 import './index.scss';
 
 const RoomCard = ({ roomInfo, usersInRoom }) => {

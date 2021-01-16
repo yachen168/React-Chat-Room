@@ -7,8 +7,8 @@ import io from 'socket.io-client';
 
 import './index.scss';
 
-import Sidebar from '../../components/Sidebar';
-import MessagesBox from '../../components/MessagesBox';
+import Sidebar from '../../components/chat/Sidebar';
+import MessagesBox from '../../components/chat/MessagesBox';
 
 let socket;
 

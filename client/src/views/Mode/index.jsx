@@ -7,10 +7,10 @@ import closeIcon from '../../images/close.svg';
 
 import './index.scss';
 
-import ModeOption from '../../components/ModeOption';
+import ModeOption from '../../components/Mode/ModeOption';
 import Modal from '../../components/Modal';
-import RoomSettings from '../../components/RoomSettings';
-import RoomCard from '../../components/RoomCard';
+import RoomSettings from '../../components/Mode/RoomSettings';
+import RoomCard from '../../components/Mode/RoomCard';
 
 let socket;
 

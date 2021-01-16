@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import Picker from 'emoji-picker-react';
 
-import emojiIcon from '../../images/smile_icon.png';
-import pictureIcon from '../../images/picture_icon.png';
-import sendIcon from '../../images/send_icon.png';
+import emojiIcon from '../../../images/smile_icon.png';
+import pictureIcon from '../../../images/picture_icon.png';
+import sendIcon from '../../../images/send_icon.png';
 
 import './index.scss';
 
