@@ -3,16 +3,10 @@ import { useHistory, useLocation } from 'react-router-dom';
 
 import queryString from 'query-string';
 
-import io from 'socket.io-client';
-
 import './index.scss';
 
 import Sidebar from '../../components/chat/Sidebar';
 import MessagesBox from '../../components/chat/MessagesBox';
-
-// let socket;
-
-// const ENDPOINT = 'http://localhost:3000';
 
 const getLocalStorage = () => {
   return JSON.parse(localStorage.getItem('userInfo'));
@@ -21,7 +15,6 @@ const getLocalStorage = () => {
 const Chat = ({ socket }) => {
   let history = useHistory();
   const location = useLocation();
-  console.log(socket, location)
 
   const [userInfo, setUserInfo] = useState({});
   const [message, setMessage] = useState('');
@@ -31,7 +24,6 @@ const Chat = ({ socket }) => {
   const { mode, room } = queryString.parse(location.search);
 
   useEffect(() => {
-    // socket = io(ENDPOINT);
     setUserInfo(getLocalStorage());
 
     socket.emit('joinRoom', {

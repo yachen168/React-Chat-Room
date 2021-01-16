@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import io from 'socket.io-client';
-
 import closeIcon from '../../images/close.svg';
 
 import './index.scss';
@@ -12,9 +10,6 @@ import Modal from '../../components/Modal';
 import RoomSettings from '../../components/Mode/RoomSettings';
 import RoomCard from '../../components/Mode/RoomCard';
 
-// let socket;
-
-// const ENDPOINT = 'http://localhost:3000';
 
 const Mode = ({socket}) => {
   let history = useHistory();
@@ -26,8 +21,6 @@ const Mode = ({socket}) => {
   const [usersInRoom, setUsersInRoom] = useState({});
 
   useEffect(() => {
-    // socket = io(ENDPOINT);
-
     socket.emit('getExistRoomList');
 
     socket.on('receiveExistRoomList', ({ existRooms, usersInRoom }) => {
@@ -56,6 +49,12 @@ const Mode = ({socket}) => {
       history.push(`/chat?mode=${mode}&room=${newRoomName}`);
     }
   };
+
+  const enterExistRoom = (roomInfo) => {
+    return () => {
+      history.push(`/chat?mode=${roomInfo.mode}&room=${roomInfo.room}`);
+    }
+  }
 
   return (
     <main>
@@ -89,6 +88,7 @@ const Mode = ({socket}) => {
                     key={i}
                     roomInfo={item.roomInfo}
                     usersInRoom={usersInRoom[item.roomInfo.room]}
+                    onClick={enterExistRoom(item.roomInfo)}
                   />
                 );
               })

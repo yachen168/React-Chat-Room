@@ -1,13 +1,12 @@
-import React, { useEffect } from 'react';
-
-import Join from './views/Home';
-import Chat from './views/Chat';
-import Mode from './views/Mode';
-import Navbar from './components/Navbar';
+import React from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
 
 import io from 'socket.io-client';
 
-import { BrowserRouter, Route } from 'react-router-dom';
+import Home from './views/Home';
+import Chat from './views/Chat';
+import Mode from './views/Mode';
+import Navbar from './components/Navbar';
 
 const ENDPOINT = 'https://yachen-chatroom.herokuapp.com/';
 const socket = io(ENDPOINT);
@@ -17,7 +16,7 @@ const App = () => {
     <>
       <Navbar />
       <BrowserRouter>
-        <Route path="/" exact component={Join} />
+        <Route path="/" exact component={Home} />
         <Route path="/mode" render={() => <Mode socket={socket} />} />
         <Route path="/chat" render={() => <Chat socket={socket} />} />
       </BrowserRouter>

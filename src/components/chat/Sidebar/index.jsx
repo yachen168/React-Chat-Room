@@ -3,7 +3,6 @@ import React from 'react';
 import './index.scss';
 
 const Sidebar = ({ userInfo, room, userList, exitRoom }) => {
-  console.log(userList)
   return (
     <div className="sidebar">
       <div className="user_info">
