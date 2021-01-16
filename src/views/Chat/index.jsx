@@ -51,7 +51,7 @@ const Chat = ({ socket }) => {
 
     socket.on('receiveUserInfoWithSocketId', (userInfo) => {
       console.log('receiveUserInfoWithSocketId', userInfo)
-      setUserInfo(userInfo);
+      setUserInfo({...userInfo});
     })
 
     return () => {
@@ -62,6 +62,7 @@ const Chat = ({ socket }) => {
   }, []);
 
   const exitRoom = () => {
+    console.log(userInfo)
     socket.emit('exitRoom', { userInfo, roomInfo: { mode, room } });
   }
 
@@ -105,13 +106,13 @@ const Chat = ({ socket }) => {
   return (
     <main className="chatroom">
       <Sidebar
-        userInfo={userInfo}
+        userInfo={{...userInfo}}
         room={room}
         userList={userList}
         exitRoom={() =>  history.push('/mode')}
       />
       <MessagesBox
-        userInfo={userInfo}
+        userInfo={{...userInfo}}
         message={message}
         setMessage={setMessage}
         messagesInfo={messagesInfo}

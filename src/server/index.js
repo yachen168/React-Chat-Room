@@ -57,7 +57,7 @@ io.on('connect', (socket) => {
     console.log('disconnect')
     // const userList = removeUser(userInfo, roomInfo);
 
-    // const user = removeUser(socket.id);
+    const user = removeUser(socket.id);
 
     // if(user) {
     //   io.to(user.room).emit('message', { user: 'Admin', text: `${user.name} has left.` });
