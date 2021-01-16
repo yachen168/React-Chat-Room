@@ -18,7 +18,7 @@ const getLocalStorage = () => {
   return JSON.parse(localStorage.getItem('userInfo'));
 };
 
-const Chat = () => {
+const Chat = ({ location }) => {
   let history = useHistory();
   const [userInfo, setUserInfo] = useState({});
   const [message, setMessage] = useState('');
@@ -29,24 +29,23 @@ const Chat = () => {
 
   useEffect(() => {
     socket = io(ENDPOINT);
-
     setUserInfo(getLocalStorage());
 
-    socket.emit('join', {
+    socket.emit('joinRoom', {
       userInfo: { ...getLocalStorage() },
       roomInfo: { mode, room },
     });
   }, [ENDPOINT, location.search]);
 
   useEffect(() => {
-    socket.on('message', ({ userInfo, isSystemMessage, message }) => {
+    socket.on('receiveMessage', ({ userInfo, isSystemMessage, message }) => {
       setMessagesInfo((messagesInfo) => [
         ...messagesInfo,
         { ...userInfo, isSystemMessage, message },
       ]);
     });
 
-    socket.on('userList', ({ userList }) => {
+    socket.on('receiveUserList', ({ userList }) => {
       setUserList(userList);
     });
 
@@ -56,6 +55,10 @@ const Chat = () => {
         { ...userInfo, isSystemMessage, message },
       ]);
     });
+
+    socket.on('receiveUserInfoWithSocketId', (userInfo) => {
+      setUserInfo(userInfo);
+    })
   }, []);
 
   const sendMessage = (e) => {

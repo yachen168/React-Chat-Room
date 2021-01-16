@@ -1,5 +1,5 @@
-let usersInLobby = []
-let usersInNormal = []
+let usersInLobby = [];
+let usersInNormal = [];
 
 const addUser = ({ userInfo, roomInfo }) => {
 
@@ -15,8 +15,10 @@ const addUser = ({ userInfo, roomInfo }) => {
 }
 
 const removeUser = (userInfo, roomInfo) => {
+  console.log(userInfo)
   if (roomInfo.mode === 'lobby') {
     usersInLobby = usersInLobby.filter(user => user.userInfo.id !== userInfo.id);
+    console.log(usersInLobby)
     return usersInLobby;
   }else{
     usersInNormal = usersInNormal.filter(user => user.userInfo.id !== userInfo.id);

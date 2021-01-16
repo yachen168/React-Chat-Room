@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Join from './views/Join';
+import Join from './views/Home';
 import Chat from './views/Chat';
 import Mode from './views/Mode';
 import Navbar from './components/Navbar';
