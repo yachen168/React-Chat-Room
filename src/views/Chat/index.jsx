@@ -30,9 +30,7 @@ const Chat = ({ socket }) => {
       userInfo: { ...getLocalStorage() },
       roomInfo: { mode, room },
     });
-  }, []);
 
-  useEffect(() => {
     socket.on('receiveMessage', ({ userInfo, isSystemMessage, message }) => {
       setMessagesInfo((messagesInfo) => [
         ...messagesInfo,
@@ -54,7 +52,12 @@ const Chat = ({ socket }) => {
     socket.on('receiveUserInfoWithSocketId', (userInfo) => {
       setUserInfo(userInfo);
     })
+
+    return () => {
+      socket.emit('exitRoom', { userInfo, roomInfo: { mode, room } });
+    }
   }, []);
+
 
   const sendMessage = (e) => {
     e.preventDefault();
@@ -94,7 +97,6 @@ const Chat = ({ socket }) => {
 
   const exitRoom = () => {
     history.push('/mode');
-    socket.emit('exitRoom', { userInfo, roomInfo: { mode, room } });
   };
 
   return (
