@@ -12,11 +12,11 @@ import Modal from '../../components/Modal';
 import RoomSettings from '../../components/Mode/RoomSettings';
 import RoomCard from '../../components/Mode/RoomCard';
 
-let socket;
+// let socket;
 
-const ENDPOINT = 'http://localhost:3000';
+// const ENDPOINT = 'http://localhost:3000';
 
-const Mode = () => {
+const Mode = ({socket}) => {
   let history = useHistory();
   const [mode, setMode] = useState('');
   const [newRoomName, setNewRoomName] = useState('');
@@ -26,7 +26,7 @@ const Mode = () => {
   const [usersInRoom, setUsersInRoom] = useState({});
 
   useEffect(() => {
-    socket = io(ENDPOINT);
+    // socket = io(ENDPOINT);
 
     socket.emit('getExistRoomList');
 
