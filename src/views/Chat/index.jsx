@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory, useLocation, Prompt } from 'react-router-dom';
 
 import queryString from 'query-string';
 
@@ -12,6 +12,9 @@ const getLocalStorage = () => {
   return JSON.parse(localStorage.getItem('userInfo'));
 };
 
+const setLocalStorage = (userInfo) => {
+  localStorage.setItem('userInfo', JSON.stringify(userInfo));
+};
 const Chat = ({ socket }) => {
   let history = useHistory();
   const location = useLocation();
@@ -24,8 +27,8 @@ const Chat = ({ socket }) => {
   const { mode, room } = queryString.parse(location.search);
 
   console.log(history)
-  useEffect(() => {
 
+  useEffect(() => {
     socket.emit('joinRoom', {
       userInfo: { ...getLocalStorage() },
       roomInfo: { mode, room },
@@ -51,7 +54,8 @@ const Chat = ({ socket }) => {
 
     socket.on('receiveUserInfoWithSocketId', (userInfo) => {
       console.log('receiveUserInfoWithSocketId', userInfo)
-      setUserInfo({...userInfo});
+      setUserInfo(userInfo);
+      setLocalStorage(userInfo);
     })
 
     return () => {
@@ -63,7 +67,7 @@ const Chat = ({ socket }) => {
 
   const exitRoom = () => {
     console.log(userInfo)
-    socket.emit('exitRoom', { userInfo, roomInfo: { mode, room } });
+    socket.emit('exitRoom', { userInfo: {...getLocalStorage()}, roomInfo: { mode, room } });
   }
 
   const sendMessage = (e) => {
@@ -105,6 +109,10 @@ const Chat = ({ socket }) => {
 
   return (
     <main className="chatroom">
+      <Prompt
+        when={true}
+        message="確定要離開聊天室嗎？"
+      />
       <Sidebar
         userInfo={{...userInfo}}
         room={room}
