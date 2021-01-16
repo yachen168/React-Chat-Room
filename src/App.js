@@ -9,7 +9,7 @@ import io from 'socket.io-client';
 
 import { BrowserRouter, Route } from 'react-router-dom';
 
-const ENDPOINT = 'http://localhost:3000';
+const ENDPOINT = 'https://yachen-chatroom.herokuapp.com/';
 const socket = io(ENDPOINT);
 
 const App = () => {
