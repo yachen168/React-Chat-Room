@@ -56,10 +56,13 @@ const Chat = ({ socket }) => {
     return () => {
       console.log('userInfo', userInfo)
       console.log('roomInfo', { mode, room })
-      socket.emit('exitRoom', { userInfo, roomInfo: { mode, room } });
+      exitRoom();
     }
   }, []);
 
+  const exitRoom = () => {
+    socket.emit('exitRoom', { userInfo, roomInfo: { mode, room } });
+  }
 
   const sendMessage = (e) => {
     e.preventDefault();
