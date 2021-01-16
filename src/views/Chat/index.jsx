@@ -23,8 +23,8 @@ const Chat = ({ socket }) => {
 
   const { mode, room } = queryString.parse(location.search);
 
+  console.log(history)
   useEffect(() => {
-    setUserInfo(getLocalStorage());
 
     socket.emit('joinRoom', {
       userInfo: { ...getLocalStorage() },
@@ -50,6 +50,7 @@ const Chat = ({ socket }) => {
     });
 
     socket.on('receiveUserInfoWithSocketId', (userInfo) => {
+      console.log('receiveUserInfoWithSocketId', userInfo)
       setUserInfo(userInfo);
     })
 
