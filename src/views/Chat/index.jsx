@@ -15,6 +15,7 @@ const getLocalStorage = () => {
 const setLocalStorage = (userInfo) => {
   localStorage.setItem('userInfo', JSON.stringify(userInfo));
 };
+
 const Chat = ({ socket }) => {
   let history = useHistory();
   const location = useLocation();
@@ -66,7 +67,6 @@ const Chat = ({ socket }) => {
   }, []);
 
   const exitRoom = () => {
-    console.log(userInfo)
     socket.emit('exitRoom', { userInfo: {...getLocalStorage()}, roomInfo: { mode, room } });
   }
 
