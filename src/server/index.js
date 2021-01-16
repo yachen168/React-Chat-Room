@@ -19,15 +19,18 @@ io.on('connect', (socket) => {
     const userInfoWithSocketId = {...userInfo, id: socket.id};
     const { usersInLobby, usersInNormal } = addUser({ userInfo: userInfoWithSocketId, roomInfo });
     
-      socket.join(roomInfo.room);
-      io.to(roomInfo.room).emit('receiveMessage', {userInfo: userInfoWithSocketId, isSystemMessage: true, message: `${userInfo.username} 加入聊天室`});
-      io.to(socket.id).emit('receiveUserInfoWithSocketId', userInfoWithSocketId);
+    socket.userInfo = userInfoWithSocketId;
+    socket.roomInfo = roomInfo
 
-      if (roomInfo.mode === 'lobby'){
-        io.to(roomInfo.room).emit('receiveUserList', {userList: usersInLobby});
-      } else {
-        io.to(roomInfo.room).emit('receiveUserList', {userList: usersInNormal});
-      }
+    socket.join(roomInfo.room);
+    io.to(roomInfo.room).emit('receiveMessage', {userInfo: userInfoWithSocketId, isSystemMessage: true, message: `${userInfo.username} 加入聊天室`});
+    io.to(socket.id).emit('receiveUserInfoWithSocketId', userInfoWithSocketId);
+
+    if (roomInfo.mode === 'lobby'){
+      io.to(roomInfo.room).emit('receiveUserList', {userList: usersInLobby});
+    } else {
+      io.to(roomInfo.room).emit('receiveUserList', {userList: usersInNormal});
+    }
   });
 
   socket.on('getExistRoomList', () => {
@@ -55,14 +58,12 @@ io.on('connect', (socket) => {
 
   socket.on('disconnect', () => {
     console.log('disconnect')
-    // const userList = removeUser(userInfo, roomInfo);
+    const { userInfo, roomInfo } = socket;
+    const userList = removeUser(userInfo, roomInfo);
 
-    const user = removeUser(socket.id);
+    io.to(user.room).emit('receiveUserList', {userList});
+    io.to(user.room).emit('receiveMessage', { userInfo, isSystemMessage: true, message: `${userInfo.username} 離開聊天室`});
 
-    // if(user) {
-    //   io.to(user.room).emit('message', { user: 'Admin', text: `${user.name} has left.` });
-    //   io.to(user.room).emit('roomData', { room: user.room, users: getUsersInRoom(user.room)});
-    // }
     socket.removeAllListeners();
   })
 });
