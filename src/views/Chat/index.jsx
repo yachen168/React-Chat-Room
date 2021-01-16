@@ -54,6 +54,8 @@ const Chat = ({ socket }) => {
     })
 
     return () => {
+      console.log('userInfo', userInfo)
+      console.log('roomInfo', { mode, room })
       socket.emit('exitRoom', { userInfo, roomInfo: { mode, room } });
     }
   }, []);
@@ -72,6 +74,7 @@ const Chat = ({ socket }) => {
           time: new Date().toLocaleTimeString(),
         },
       });
+
       setMessage('');
     }
   };
@@ -95,17 +98,13 @@ const Chat = ({ socket }) => {
     };
   };
 
-  const exitRoom = () => {
-    history.push('/mode');
-  };
-
   return (
     <main className="chatroom">
       <Sidebar
         userInfo={userInfo}
         room={room}
         userList={userList}
-        exitRoom={exitRoom}
+        exitRoom={() =>  history.push('/mode')}
       />
       <MessagesBox
         userInfo={userInfo}

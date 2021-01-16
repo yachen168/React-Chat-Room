@@ -13,6 +13,7 @@ import RoomCard from '../../components/Mode/RoomCard';
 
 const Mode = ({socket}) => {
   let history = useHistory();
+  
   const [mode, setMode] = useState('');
   const [newRoomName, setNewRoomName] = useState('');
   const [isRoomSettingsModalShow, setIsRoomSettingsModalShow] = useState(false);
