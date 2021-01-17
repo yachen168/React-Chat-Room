@@ -22,12 +22,12 @@ io.on('connect', (socket) => {
   socket.on('joinRoom', ({ userInfo, roomInfo }) => {
     const userInfoWithSocketId = {...userInfo, id: socket.id};
     const { usersInLobby, usersInNormal } = addUser({ userInfo: userInfoWithSocketId, roomInfo });
-    const sumOfUsersInExistRooms = getSumOfUsersInExistRooms();
+    const roomSet = getSumOfUsersInExistRooms();
 
     objUserInfo = userInfo;
     objRoomInfo = roomInfo;
 
-    if (!(roomInfo.room in sumOfUsersInExistRooms)){
+    if (!(roomInfo.room in roomSet)){
       socket.join(roomInfo.room);
     }
 
@@ -70,7 +70,7 @@ io.on('connect', (socket) => {
     io.to(objRoomInfo.room).emit('receiveUserList', {userList});
     io.to(objRoomInfo.room).emit('receiveMessage', { userInfo: objUserInfo, isSystemMessage: true, message: `${objUserInfo.username} 離開聊天室`});
 
-    socket.removeAllListeners();
+    // socket.removeAllListeners();
   })
 });
 
