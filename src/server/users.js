@@ -2,7 +2,6 @@ let usersInLobby = [];
 let usersInNormal = [];
 
 const addUser = ({ userInfo, roomInfo }) => {
-  const roomSet = getSumOfUsersInExistRooms();
   const user = { userInfo, roomInfo };
 
   if (roomInfo.mode === 'lobby'){

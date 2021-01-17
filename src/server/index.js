@@ -18,7 +18,6 @@ io.on('connect', (socket) => {
   let objUserInfo;
   let objRoomInfo;
 
-
   socket.on('joinRoom', ({ userInfo, roomInfo }) => {
     const userInfoWithSocketId = {...userInfo, id: socket.id};
     const { usersInLobby, usersInNormal } = addUser({ userInfo: userInfoWithSocketId, roomInfo });
