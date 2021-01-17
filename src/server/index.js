@@ -22,14 +22,12 @@ io.on('connect', (socket) => {
   socket.on('joinRoom', ({ userInfo, roomInfo }) => {
     const userInfoWithSocketId = {...userInfo, id: socket.id};
     const { usersInLobby, usersInNormal } = addUser({ userInfo: userInfoWithSocketId, roomInfo });
-    const roomSet = getSumOfUsersInExistRooms();
+    // const roomSet = getSumOfUsersInExistRooms();
 
     objUserInfo = userInfo;
     objRoomInfo = roomInfo;
 
-    if (!(roomInfo.room in roomSet)){
-      socket.join(roomInfo.room);
-    }
+    socket.join(roomInfo.room);
 
     io.to(roomInfo.room).emit('receiveMessage', {userInfo: userInfoWithSocketId, isSystemMessage: true, message: `${userInfo.username} 加入聊天室`});
     io.to(socket.id).emit('receiveUserInfoWithSocketId', userInfoWithSocketId);
@@ -43,9 +41,9 @@ io.on('connect', (socket) => {
 
   socket.on('getExistRoomList', () => {
     const existRooms = getExistRoomsInfo();
-    const usersInRoom = getSumOfUsersInExistRooms();
+    const sumOfUsersInRooms = getSumOfUsersInExistRooms();
 
-    io.to(socket.id).emit('receiveExistRoomList', { existRooms, usersInRoom });
+    io.to(socket.id).emit('receiveExistRoomList', { existRooms, sumOfUsersInRooms });
   })
 
   socket.on('sendMessage', ({userInfo, roomInfo, message}) => {

@@ -13,20 +13,18 @@ import RoomCard from '../../components/Mode/RoomCard';
 
 const Mode = ({socket}) => {
   let history = useHistory();
-  
+
   const [mode, setMode] = useState('');
   const [newRoomName, setNewRoomName] = useState('');
   const [isRoomSettingsModalShow, setIsRoomSettingsModalShow] = useState(false);
   const [isRoomsModalShow, setIsRoomsModalShow] = useState(false);
-  const [existRoomList, setExistRoomList] = useState([]);
-  const [usersInRoom, setUsersInRoom] = useState({});
+  const [sumOfUsersInRooms, setSumOfUsersInRooms] = useState({});
 
   useEffect(() => {
     socket.emit('getExistRoomList');
 
-    socket.on('receiveExistRoomList', ({ existRooms, usersInRoom }) => {
-      setExistRoomList(existRooms);
-      setUsersInRoom(usersInRoom);
+    socket.on('receiveExistRoomList', ({ sumOfUsersInRooms }) => {
+      setSumOfUsersInRooms(sumOfUsersInRooms);
     });
   }, []);
 
@@ -44,16 +42,16 @@ const Mode = ({socket}) => {
   const createNewRoom = () => {
     setNewRoomName('');
 
-    if (newRoomName in usersInRoom) {
+    if (newRoomName in sumOfUsersInRooms) {
       alert('該名稱房間已存在');
     } else {
       history.push(`/chat?mode=${mode}&room=${newRoomName}`);
     }
   };
 
-  const enterExistRoom = (roomInfo) => {
+  const enterExistRoom = (room) => {
     return () => {
-      history.push(`/chat?mode=${roomInfo.mode}&room=${roomInfo.room}`);
+      history.push(`/chat?mode=normal&room=${room}`);
     }
   }
 
@@ -82,14 +80,14 @@ const Mode = ({socket}) => {
       </div>
       {isRoomsModalShow ? (
         <Modal>
-          {existRoomList.length > 0
-            ? existRoomList.map((item, i) => {
+          {Object.keys(sumOfUsersInRooms).length > 0
+            ? Object.keys(sumOfUsersInRooms).map((room, i) => {
                 return (
                   <RoomCard
                     key={i}
-                    roomInfo={item.roomInfo}
-                    usersInRoom={usersInRoom[item.roomInfo.room]}
-                    onClick={enterExistRoom(item.roomInfo)}
+                    roomName={room}
+                    SumOfUsers={sumOfUsersInRooms[room]}
+                    onClick={enterExistRoom(room)}
                   />
                 );
               })
