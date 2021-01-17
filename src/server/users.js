@@ -15,10 +15,8 @@ const addUser = ({ userInfo, roomInfo }) => {
 }
 
 const removeUser = (userInfo, roomInfo) => {
-  console.log(userInfo)
   if (roomInfo.mode === 'lobby') {
     usersInLobby = usersInLobby.filter(user => user.userInfo.id !== userInfo.id);
-    console.log(usersInLobby)
     return usersInLobby;
   }else{
     usersInNormal = usersInNormal.filter(user => user.userInfo.id !== userInfo.id);
@@ -26,11 +24,11 @@ const removeUser = (userInfo, roomInfo) => {
   }
 }
 
-const getExistRooms = () => usersInNormal;
+const getExistRoomsInfo = () => usersInNormal;
 
 // const getUser = (id) => users.find((user) => user.id === id);
 
-const getUsersInRoom = () => {
+const getSumOfUsersInExistRooms = () => {
   let roomSet = new Set();
 
   if (usersInNormal.length>0){
@@ -49,4 +47,4 @@ const getUsersInRoom = () => {
   }
 };
 
-module.exports = { addUser, removeUser, getUsersInRoom, getExistRooms };
+module.exports = { addUser, removeUser, getSumOfUsersInExistRooms, getExistRoomsInfo };

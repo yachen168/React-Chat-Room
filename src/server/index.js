@@ -2,7 +2,7 @@ const http = require('http');
 const express = require('express');
 const socketIO = require('socket.io');
 
-const { addUser, removeUser, getUsersInRoom, getExistRooms } = require('./users');
+const { addUser, removeUser, getSumOfUsersInExistRooms, getExistRoomsInfo } = require('./users');
 
 const app = express();
 const server = http.createServer(app);
@@ -18,14 +18,19 @@ io.on('connect', (socket) => {
   let objUserInfo;
   let objRoomInfo;
 
+
   socket.on('joinRoom', ({ userInfo, roomInfo }) => {
     const userInfoWithSocketId = {...userInfo, id: socket.id};
     const { usersInLobby, usersInNormal } = addUser({ userInfo: userInfoWithSocketId, roomInfo });
-    
+    const sumOfUsersInExistRooms = getSumOfUsersInExistRooms();
+
     objUserInfo = userInfo;
     objRoomInfo = roomInfo;
 
-    socket.join(roomInfo.room);
+    if (!(roomInfo.room in sumOfUsersInExistRooms)){
+      socket.join(roomInfo.room);
+    }
+
     io.to(roomInfo.room).emit('receiveMessage', {userInfo: userInfoWithSocketId, isSystemMessage: true, message: `${userInfo.username} 加入聊天室`});
     io.to(socket.id).emit('receiveUserInfoWithSocketId', userInfoWithSocketId);
 
@@ -37,8 +42,8 @@ io.on('connect', (socket) => {
   });
 
   socket.on('getExistRoomList', () => {
-    const existRooms = getExistRooms();
-    const usersInRoom = getUsersInRoom();
+    const existRooms = getExistRoomsInfo();
+    const usersInRoom = getSumOfUsersInExistRooms();
 
     io.to(socket.id).emit('receiveExistRoomList', { existRooms, usersInRoom });
   })
