@@ -67,7 +67,6 @@ io.on('connect', (socket) => {
     io.to(objRoomInfo.room).emit('receiveUserList', {userList});
     io.to(objRoomInfo.room).emit('receiveMessage', { userInfo: objUserInfo, isSystemMessage: true, message: `${objUserInfo.username} 離開聊天室 disconnect`});
 
-    socket.removeAllListeners();
   })
 });
 
