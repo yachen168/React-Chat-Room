@@ -24,7 +24,6 @@ const Mode = ({socket}) => {
     socket.emit('getExistRoomList');
 
     socket.on('receiveExistRoomList', ({ sumOfUsersInRooms }) => {
-      console.log('Mode page', sumOfUsersInRooms)
       setSumOfUsersInRooms({...sumOfUsersInRooms});
     });
   }, []);
