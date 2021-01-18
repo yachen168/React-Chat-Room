@@ -28,8 +28,6 @@ const Chat = ({ socket }) => {
   const { mode, room } = queryString.parse(location.search);
 
   useEffect(() => {
-    window.addEventListener('beforeunload', exitRoom);
-
     socket.emit('joinRoom', {
       userInfo: { ...getLocalStorage() },
       roomInfo: { mode, room },

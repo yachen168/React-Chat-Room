@@ -58,14 +58,14 @@ io.on('connect', (socket) => {
     const userList = removeUser(userInfo, roomInfo);
 
     io.to(roomInfo.room).emit('receiveUserList', {userList});
-    io.to(roomInfo.room).emit('receiveMessage', { userInfo, isSystemMessage: true, message: `${userInfo.username} 離開聊天室` });
+    io.to(roomInfo.room).emit('receiveMessage', { userInfo, isSystemMessage: true, message: `${userInfo.username} 離開聊天室 exitRoom` });
   })
 
   socket.on('disconnect', () => {
     const userList = removeUser(objUserInfo, objRoomInfo);
 
     io.to(objRoomInfo.room).emit('receiveUserList', {userList});
-    io.to(objRoomInfo.room).emit('receiveMessage', { userInfo: objUserInfo, isSystemMessage: true, message: `${objUserInfo.username} 離開聊天室`});
+    io.to(objRoomInfo.room).emit('receiveMessage', { userInfo: objUserInfo, isSystemMessage: true, message: `${objUserInfo.username} 離開聊天室 disconnect`});
 
     socket.removeAllListeners();
   })
