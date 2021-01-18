@@ -4,15 +4,12 @@ const socketIO = require('socket.io');
 
 const { addUser, removeUser, getSumOfUsersInExistRooms, getExistRoomsInfo } = require('./users');
 
-const router = require('./router');
-
 const app = express();
 const server = http.createServer(app);
 const io = socketIO(server);
 
 const PORT = process.env.PORT || 3000;
 
-app.use(router);
 app.use(express.static(__dirname + '/../../build'))
 
 io.on('connect', (socket) => {
@@ -24,7 +21,6 @@ io.on('connect', (socket) => {
   socket.on('joinRoom', ({ userInfo, roomInfo }) => {
     const userInfoWithSocketId = {...userInfo, id: socket.id};
     const { usersInLobby, usersInNormal } = addUser({ userInfo: userInfoWithSocketId, roomInfo });
-    // const roomSet = getSumOfUsersInExistRooms();
 
     objUserInfo = userInfo;
     objRoomInfo = roomInfo;
