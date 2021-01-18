@@ -43,6 +43,7 @@ const Chat = ({ socket }) => {
     });
 
     socket.on('receiveUserList', ({ userList }) => {
+      console.log(userList);
       setUserList(userList);
     });
 
@@ -54,14 +55,11 @@ const Chat = ({ socket }) => {
     });
 
     socket.on('receiveUserInfoWithSocketId', (userInfo) => {
-      console.log('receiveUserInfoWithSocketId', userInfo)
       setUserInfo(userInfo);
       setLocalStorage(userInfo);
     })
 
     return () => {
-      console.log('userInfo', userInfo)
-      console.log('roomInfo', { mode, room })
       exitRoom();
     }
   }, []);
