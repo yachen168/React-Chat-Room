@@ -4,12 +4,15 @@ const socketIO = require('socket.io');
 
 const { addUser, removeUser, getSumOfUsersInExistRooms, getExistRoomsInfo } = require('./users');
 
+const router = require('./router');
+
 const app = express();
 const server = http.createServer(app);
 const io = socketIO(server);
 
 const PORT = process.env.PORT || 3000;
 
+app.use(router);
 app.use(express.static(__dirname + '/../../build'))
 
 io.on('connect', (socket) => {
@@ -67,7 +70,7 @@ io.on('connect', (socket) => {
     const userList = removeUser(objUserInfo, objRoomInfo);
 
     socket.leave(roomInfo.room);
-    
+
     io.to(objRoomInfo.room).emit('receiveUserList', {userList});
     io.to(objRoomInfo.room).emit('receiveMessage', { userInfo: objUserInfo, isSystemMessage: true, message: `${objUserInfo.username} 離開聊天室 disconnect`});
 
