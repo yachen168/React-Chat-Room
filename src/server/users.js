@@ -28,11 +28,9 @@ const getExistRoomsInfo = () => usersInNormal;
 // const getUser = (id) => users.find((user) => user.id === id);
 
 const getSumOfUsersInExistRooms = () => {
-  let roomSet = {};
-
   if (usersInNormal.length>0){
     return usersInNormal.reduce( (acc, curr) => {
-      if (curr.roomInfo.room in roomSet) {
+      if (curr.roomInfo.room in acc) {
         acc[curr.roomInfo.room]++;
       }else {
         acc[curr.roomInfo.room] = 1;
