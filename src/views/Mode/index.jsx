@@ -5,9 +5,9 @@ import closeIcon from '../../images/close.svg';
 
 import './index.scss';
 
-import ModeOption from '../../components/mode/ModeOption';
-import RoomSettings from '../../components/mode/RoomSettings';
-import RoomCard from '../../components/mode/RoomCard';
+import ModeOption from '../../components/Mode/ModeOption';
+import RoomSettings from '../../components/Mode/RoomSettings';
+import RoomCard from '../../components/Mode/RoomCard';
 import Modal from '../../components/common/Modal';
 
 
