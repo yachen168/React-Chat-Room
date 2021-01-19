@@ -11,6 +11,8 @@ const io = socketIO(server);
 const PORT = process.env.PORT || 3000;
 
 app.use(express.static(__dirname + '/../../build'))
+// test
+app.set('port', PORT);
 
 io.on('connect', (socket) => {
   console.log('用戶已連接');
