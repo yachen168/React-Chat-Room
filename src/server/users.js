@@ -23,23 +23,17 @@ const removeUser = (userInfo, roomInfo) => {
   }
 }
 
-const getExistRoomsInfo = () => usersInNormal;
-
-// const getUser = (id) => users.find((user) => user.id === id);
+const getExistRoomsInfo = () => [...usersInNormal];
 
 const getSumOfUsersInExistRooms = () => {
-  if (usersInNormal.length>0){
-    return usersInNormal.reduce( (acc, curr) => {
-      if (curr.roomInfo.room in acc) {
-        acc[curr.roomInfo.room]++;
-      }else {
-        acc[curr.roomInfo.room] = 1;
-      }
-      return acc;
-    }, {});
-  }else{
-    return {};
-  }
+  return usersInNormal.reduce( (obj, currObj) => {
+    if (currObj.roomInfo.room in obj) {
+      obj[currObj.roomInfo.room]++;
+    }else {
+      obj[currObj.roomInfo.room] = 1;
+    }
+    return obj;
+  }, {});
 };
 
 module.exports = { addUser, removeUser, getSumOfUsersInExistRooms, getExistRoomsInfo };

@@ -35,10 +35,6 @@ const Mode = ({socket}) => {
     };
   };
 
-  const joinExistRoomHandler = () => {
-    setIsRoomsModalShow(true);
-  };
-
   const createNewRoom = () => {
     setNewRoomName('');
 
@@ -67,7 +63,7 @@ const Mode = ({socket}) => {
         <ModeOption
           option="加入房間"
           isActive={mode === 'normal'}
-          onClick={joinExistRoomHandler}
+          onClick={() => setIsRoomsModalShow(true)}
         />
         <ModeOption
           option="創建房間"

@@ -43,7 +43,7 @@ const setLocalStorage = (userInfo) => {
   localStorage.setItem('userInfo', JSON.stringify(userInfo));
 };
 
-const Join = () => {
+const Home = () => {
   const [roleType, setRoleType] = useState('dogs');
   const [roleIndex, setRoleIndex] = useState(0);
   const [username, setUsername] = useState('');
@@ -111,4 +111,4 @@ const Join = () => {
   );
 };
 
-export default Join;
+export default Home;

@@ -12,6 +12,7 @@ const MessageInput = ({ setMessage, sendMessage, message, uploadImage }) => {
 
   const onEmojiClick = (event, emojiObject) => {
     const input = document.querySelector('.message_input');
+    
     setIsShowEmojiPicker(false);
     setMessage(`${message}${emojiObject.emoji}`);
     input.focus();
