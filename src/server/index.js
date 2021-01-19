@@ -14,8 +14,6 @@ app.use(express.static(__dirname + '/../../build'));
 app.set('port', PORT);
 
 io.on('connect', (socket) => {
-  console.log('用戶已連接');
-
   let objUserInfo;
   let objRoomInfo;
 
@@ -64,7 +62,7 @@ io.on('connect', (socket) => {
     socket.leave(roomInfo.room);
 
     objRoomInfo.room = ''
-    
+
     io.to(roomInfo.room).emit('receiveUserList', { userList });
     io.to(roomInfo.room).emit('receiveMessage', { userInfo, isSystemMessage: true, message: `${userInfo.username} 離開聊天室 exitRoom` });
 
