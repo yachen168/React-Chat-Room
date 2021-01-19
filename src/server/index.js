@@ -61,8 +61,6 @@ io.on('connect', (socket) => {
     const userList = removeUser(userInfo, roomInfo);
     const sumOfUsersInRooms = getSumOfUsersInExistRooms();
 
-    objRoomInfo = [{...objRoomInfo, room:''}];
-
     socket.leave(roomInfo.room);
 
     io.to(roomInfo.room).emit('receiveUserList', { userList });
