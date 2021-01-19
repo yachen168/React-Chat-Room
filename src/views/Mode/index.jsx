@@ -35,6 +35,12 @@ const Mode = ({socket}) => {
     };
   };
 
+  const enterExistRoom = (room) => {
+    return () => {
+      history.push(`/chat?mode=normal&room=${room}`);
+    }
+  }
+
   const createNewRoom = () => {
     setNewRoomName('');
 
@@ -77,10 +83,7 @@ const Mode = ({socket}) => {
                     key={i}
                     roomName={room}
                     SumOfUsers={sumOfUsersInRooms[room]}
-                    onClick={(room) => () => {
-                        history.push(`/chat?mode=normal&room=${room}`);
-                      }
-                    }
+                    onClick={enterExistRoom(room)}
                   />
                 );
               })
