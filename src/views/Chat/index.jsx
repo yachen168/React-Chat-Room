@@ -125,7 +125,7 @@ const Chat = ({ socket }) => {
         sendMessage={sendMessage}
         uploadImage={uploadImage}
       />
-      <Loading loading={loading} />
+      {loading ? (<Loading />) : null}
     </main>
   );
 };

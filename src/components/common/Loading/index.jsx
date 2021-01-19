@@ -9,14 +9,10 @@ const spinner = css`
   border-color: #666;
 `;
 
-function Loading({loading}) {
+function Loading() {
   return (
     <div className="loading">
-      <BeatLoader 
-        color="#000"
-        loading={loading} 
-        css={spinner} size={20} 
-      />
+      <BeatLoader css={spinner} size={20} />
     </div>
   );
 }
