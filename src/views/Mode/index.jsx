@@ -5,10 +5,10 @@ import closeIcon from '../../images/close.svg';
 
 import './index.scss';
 
-import ModeOption from '../../components/Mode/ModeOption';
-import Modal from '../../components/Modal';
-import RoomSettings from '../../components/Mode/RoomSettings';
-import RoomCard from '../../components/Mode/RoomCard';
+import ModeOption from '../../components/mode/ModeOption';
+import RoomSettings from '../../components/mode/RoomSettings';
+import RoomCard from '../../components/mode/RoomCard';
+import Modal from '../../components/common/Modal';
 
 
 const Mode = ({socket}) => {
@@ -45,12 +45,6 @@ const Mode = ({socket}) => {
     }
   };
 
-  const enterExistRoom = (room) => {
-    return () => {
-      history.push(`/chat?mode=normal&room=${room}`);
-    }
-  }
-
   return (
     <main>
       <h1 className="mode_page_title">選擇聊天室模式</h1>
@@ -83,7 +77,10 @@ const Mode = ({socket}) => {
                     key={i}
                     roomName={room}
                     SumOfUsers={sumOfUsersInRooms[room]}
-                    onClick={enterExistRoom(room)}
+                    onClick={(room) => () => {
+                        history.push(`/chat?mode=normal&room=${room}`);
+                      }
+                    }
                   />
                 );
               })

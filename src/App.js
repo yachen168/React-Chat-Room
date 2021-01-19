@@ -6,7 +6,7 @@ import io from 'socket.io-client';
 import Home from './views/Home';
 import Chat from './views/Chat';
 import Mode from './views/Mode';
-import Navbar from './components/Navbar';
+import Navbar from './components/common/Navbar';
 
 const ENDPOINT = 'https://yachen-chatroom.herokuapp.com/';
 const socket = io(ENDPOINT);
