@@ -34,7 +34,7 @@ const Chat = ({ socket }) => {
     });
 
     socket.on('receiveMessage', ({ userInfo, isSystemMessage, message }) => {
-      setMessagesInfo((messagesInfo) => [
+      setMessagesInfo([
         ...messagesInfo,
         { ...userInfo, isSystemMessage, message },
       ]);
@@ -45,7 +45,7 @@ const Chat = ({ socket }) => {
     });
 
     socket.on('receiveImage', ({ userInfo, isSystemMessage, message }) => {
-      setMessagesInfo((messagesInfo) => [
+      setMessagesInfo([
         ...messagesInfo,
         { ...userInfo, isSystemMessage, message },
       ]);
