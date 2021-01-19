@@ -2,11 +2,15 @@ import React from 'react';
 
 import './index.scss';
 
-const Sidebar = ({ userInfo, room, userList, exitRoom }) => {
+const Sidebar = ({ userInfo, room, userList, exitRoom, onLoad }) => {
   return (
     <div className="sidebar">
       <div className="user_info">
-        <img className="avatar" src={userInfo.avatar} alt="avatar" />
+        <img 
+          className="avatar" 
+          src={userInfo.avatar} 
+          onLoad={onLoad}
+          alt="avatar" />
         <h2 className="username">{userInfo.username}</h2>
       </div>
       <div className="this_room_info">

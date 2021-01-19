@@ -7,6 +7,7 @@ import './index.scss';
 
 import Sidebar from '../../components/chat/Sidebar';
 import MessagesBox from '../../components/chat/MessagesBox';
+import Loading from '../../components/common/Loading';
 
 const getLocalStorage = () => {
   return JSON.parse(localStorage.getItem('userInfo'));
@@ -24,6 +25,7 @@ const Chat = ({ socket }) => {
   const [message, setMessage] = useState('');
   const [messagesInfo, setMessagesInfo] = useState([]);
   const [userList, setUserList] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const { mode, room } = queryString.parse(location.search);
 
@@ -112,6 +114,7 @@ const Chat = ({ socket }) => {
         userInfo={{...userInfo}}
         room={room}
         userList={userList}
+        onLoad={() => setLoading(false)}
         exitRoom={() =>  history.push('/mode')}
       />
       <MessagesBox
@@ -122,6 +125,7 @@ const Chat = ({ socket }) => {
         sendMessage={sendMessage}
         uploadImage={uploadImage}
       />
+      <Loading loading={loading} />
     </main>
   );
 };
