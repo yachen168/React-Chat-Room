@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './index.scss';
 
@@ -23,6 +24,13 @@ const RoomSettings = ({
       </div>
     </div>
   );
+};
+
+RoomSettings.propTypes = {
+  newRoomName: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  confirmHandler: PropTypes.func.isRequired,
+  cancelHandler: PropTypes.func.isRequired
 };
 
 export default RoomSettings;

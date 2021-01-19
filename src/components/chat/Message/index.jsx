@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './index.scss';
 
@@ -25,6 +26,11 @@ const Message = ({ userInfo, messageInfo }) => {
       <span className="time">{messageInfo.message.time}</span>
     </div>
   );
+};
+
+Message.propTypes = {
+  userInfo: PropTypes.object.isRequired,
+  messageInfo: PropTypes.object.isRequired
 };
 
 export default Message;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './index.scss';
 
@@ -33,6 +34,14 @@ const Sidebar = ({ userInfo, room, userList, exitRoom, onLoad }) => {
       </div>
     </div>
   );
+};
+
+Sidebar.propTypes = {
+  userInfo: PropTypes.object.isRequired,
+  room: PropTypes.string.isRequired,
+  userList: PropTypes.array.isRequired,
+  exitRoom: PropTypes.func.isRequired, 
+  onLoad: PropTypes.func.isRequired 
 };
 
 export default Sidebar;

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import closeIcon from '../../images/close.svg';
 
@@ -82,7 +83,7 @@ const Mode = ({socket}) => {
                   <RoomCard
                     key={i}
                     roomName={room}
-                    SumOfUsers={sumOfUsersInRooms[room]}
+                    sumOfUsers={sumOfUsersInRooms[room]}
                     onClick={enterExistRoom(room)}
                   />
                 );
@@ -110,6 +111,10 @@ const Mode = ({socket}) => {
       ) : null}
     </main>
   );
+};
+
+Mode.propTypes = {
+  socket: PropTypes.object.isRequired
 };
 
 export default Mode;

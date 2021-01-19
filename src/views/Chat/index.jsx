@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useLocation, Prompt } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import queryString from 'query-string';
 
@@ -128,6 +129,10 @@ const Chat = ({ socket }) => {
       {loading ? (<Loading />) : null}
     </main>
   );
+};
+
+Chat.propTypes = {
+  socket: PropTypes.object.isRequired
 };
 
 export default Chat;

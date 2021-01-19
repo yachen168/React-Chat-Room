@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './index.scss';
 
@@ -32,6 +33,15 @@ const MessagesBox = ({
       />
     </div>
   );
+};
+
+MessagesBox.propTypes = {
+  userInfo: PropTypes.object.isRequired,
+  message: PropTypes.string.isRequired,
+  messagesInfo: PropTypes.object.isRequired,
+  setMessage: PropTypes.func.isRequired,
+  sendMessage: PropTypes.func.isRequired,
+  uploadImage: PropTypes.func.isRequired,
 };
 
 export default MessagesBox;

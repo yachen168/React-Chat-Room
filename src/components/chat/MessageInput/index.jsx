@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+
 import Picker from 'emoji-picker-react';
 
 import emojiIcon from '../../../images/smile_icon.png';
@@ -51,4 +53,12 @@ const MessageInput = ({ setMessage, sendMessage, message, uploadImage }) => {
     </div>
   );
 };
+
+MessageInput.propTypes = {
+  setMessage: PropTypes.func.isRequired,
+  sendMessage: PropTypes.func.isRequired,
+  message: PropTypes.string.isRequired,
+  uploadImage: PropTypes.func.isRequired
+};
+
 export default MessageInput;
