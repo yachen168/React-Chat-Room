@@ -61,8 +61,8 @@ io.on('connect', (socket) => {
 
     socket.leave(roomInfo.room);
 
-    objRoomInfo.room = ''
-
+    objRoomInfo.room = '';
+    
     io.to(roomInfo.room).emit('receiveUserList', { userList });
     io.to(roomInfo.room).emit('receiveMessage', { userInfo, isSystemMessage: true, message: `${userInfo.username} 離開聊天室 exitRoom` });
 
@@ -70,10 +70,10 @@ io.on('connect', (socket) => {
   })
 
   socket.on('disconnect', () => {
-    const userList = removeUser(objUserInfo, objRoomInfo);
-    const sumOfUsersInRooms = getSumOfUsersInExistRooms();
-
     if (!objRoomInfo.room) {
+      const userList = removeUser(objUserInfo, objRoomInfo);
+      const sumOfUsersInRooms = getSumOfUsersInExistRooms();
+
       socket.leave(objRoomInfo.room);
 
       io.to(objRoomInfo.room).emit('receiveUserList', { userList });
