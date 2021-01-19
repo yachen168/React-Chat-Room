@@ -10,8 +10,7 @@ const io = socketIO(server);
 
 const PORT = process.env.PORT || 3000;
 
-app.use(express.static(__dirname + '/../../build'))
-// test
+app.use(express.static(__dirname + '/../../build'));
 app.set('port', PORT);
 
 io.on('connect', (socket) => {
@@ -67,7 +66,7 @@ io.on('connect', (socket) => {
   socket.on('disconnect', () => {
     const userList = removeUser(objUserInfo, objRoomInfo);
 
-    socket.leave(roomInfo.room);
+    socket.leave(objRoomInfo.room);
 
     io.to(objRoomInfo.room).emit('receiveUserList', {userList});
     io.to(objRoomInfo.room).emit('receiveMessage', { userInfo: objUserInfo, isSystemMessage: true, message: `${objUserInfo.username} 離開聊天室 disconnect`});
