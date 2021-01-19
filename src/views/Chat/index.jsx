@@ -41,7 +41,6 @@ const Chat = ({ socket }) => {
     });
 
     socket.on('receiveUserList', ({ userList }) => {
-      console.log(userList);
       setUserList(userList);
     });
 
