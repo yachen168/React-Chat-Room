@@ -42,6 +42,9 @@ const Chat = ({ socket }) => {
         ...messagesInfo,
         { ...userInfo, isSystemMessage, message },
       ]);
+
+      const messageBox = document.querySelector('.messages');
+      messageBox.scrollTop = messageBox.scrollHeight;
     });
 
     socket.on('receiveUserList', ({ userList }) => {
@@ -84,9 +87,6 @@ const Chat = ({ socket }) => {
       });
 
       setMessage('');
-      
-      const messageBox = document.querySelector('.messages');
-      messageBox.scrollTop = messageBox.scrollHeight;
     }
   };
 
