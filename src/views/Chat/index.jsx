@@ -27,8 +27,14 @@ const Chat = ({ socket }) => {
   const [messagesInfo, setMessagesInfo] = useState([]);
   const [userList, setUserList] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [scrollHeight, setScrollHeight] = useState(null);
 
   const { mode, room } = queryString.parse(location.search);
+
+  // useEffect(()=>{
+  //   const messageBox = document.querySelector('.messages_box');
+  //   setScrollTop(() => messageBox.scrollHeight);
+  // },[])
 
   useEffect(() => {
     socket.emit('joinRoom', {
@@ -82,13 +88,11 @@ const Chat = ({ socket }) => {
         },
       });
 
-      scrollToBottom();
       setMessage('');
-    }
 
-    const scrollToBottom = () => {
       const messageBox = document.querySelector('.messages_box');
-      messageBox.scrollTop = messageBox.scrollHeight;
+      setScrollHeight(() => messageBox.scrollHeight);
+      messageBox.scrollTop = scrollHeight;
     }
   };
 
