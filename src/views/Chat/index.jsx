@@ -82,7 +82,13 @@ const Chat = ({ socket }) => {
         },
       });
 
+      scrollToBottom();
       setMessage('');
+    }
+
+    const scrollToBottom = () => {
+      const messageBox = document.querySelector('.messages_box');
+      messageBox.scrollTop = messageBox.scrollHeight;
     }
   };
 
