@@ -32,6 +32,11 @@ const Chat = ({ socket }) => {
 
 
   useEffect(() => {
+    const messageBox = document.querySelector('.messages');
+    messageBox.scrollTop = messageBox.scrollHeight;
+  }, [messagesInfo])
+
+  useEffect(() => {
     socket.emit('joinRoom', {
       userInfo: { ...getLocalStorage() },
       roomInfo: { mode, room },
@@ -42,9 +47,6 @@ const Chat = ({ socket }) => {
         ...messagesInfo,
         { ...userInfo, isSystemMessage, message },
       ]);
-
-      const messageBox = document.querySelector('.messages');
-      messageBox.scrollTop = messageBox.scrollHeight;
     });
 
     socket.on('receiveUserList', ({ userList }) => {
