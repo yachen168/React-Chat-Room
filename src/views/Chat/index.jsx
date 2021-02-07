@@ -31,11 +31,6 @@ const Chat = ({ socket }) => {
 
   const { mode, room } = queryString.parse(location.search);
 
-  // useEffect(()=>{
-  //   const messageBox = document.querySelector('.messages_box');
-  //   setScrollTop(() => messageBox.scrollHeight);
-  // },[])
-
   useEffect(() => {
     socket.emit('joinRoom', {
       userInfo: { ...getLocalStorage() },
@@ -90,7 +85,7 @@ const Chat = ({ socket }) => {
 
       setMessage('');
 
-      const messageBox = document.querySelector('.messages_box');
+      const messageBox = document.querySelector('.messages');
       setScrollHeight(() => messageBox.scrollHeight);
       messageBox.scrollTop = scrollHeight;
     }
