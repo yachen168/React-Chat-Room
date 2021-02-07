@@ -16,15 +16,17 @@ const MessagesBox = ({
 }) => {
   return (
     <div className="messages_box">
-      {messagesInfo.map((messageInfo) => {
-        return (
-          <Message
-            key={messageInfo.id}
-            userInfo={userInfo}
-            messageInfo={messageInfo}
-          />
-        );
-      })}
+      <div className="messages">
+        {messagesInfo.map((messageInfo) => {
+          return (
+            <Message
+              key={messageInfo.id}
+              userInfo={userInfo}
+              messageInfo={messageInfo}
+            />
+          );
+        })}
+      </div>
       <MessageInput
         message={message}
         setMessage={setMessage}
