@@ -32,7 +32,7 @@ const Chat = ({ socket }) => {
 
   useEffect(() => {
     const messageBox = document.querySelector('.messages');
-    messageBox.scrollTop = scrollHeight;
+    messageBox.scrollTop = messageBox.scrollHeight;
   }, [])
 
   useEffect(() => {
